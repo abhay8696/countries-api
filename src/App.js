@@ -1,13 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 //dependecies
 import axios from 'axios';
 //styles
-import './App.css';
+import './styles/App.css';
+import Navbar from './components/navbar';
+import { DarkThemeContext } from './context/darkThemeContext';
 
 function App() {
 
   const 
-  [countriesArray, setCountriesArray] = useState();
+  [countriesArray, setCountriesArray] = useState(),
+  [darkTheme, setDarkTheme] = useState(true);
 
   useEffect(()=> {
     getCountries();
@@ -22,11 +25,19 @@ function App() {
     .catch(function (error) {
       console.log(error);
     })
+  },
+  themFunction = ()=> {
+    if(darkTheme) return "App darkApp";
+    return "App lightApp"
   }
+
   return (
-    <div className="App">
-      
+    <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
+    <div className={themFunction()}>
+      <Navbar/>
+      <h1>APP BODY</h1>
     </div>
+    </DarkThemeContext.Provider>
   );
 }
 

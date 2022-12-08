@@ -1,0 +1,30 @@
+@import 'flexbox';
+
+
+.App{
+    width: 100vw;
+    height: 100vh;
+    @include flexbox(column, '', '');
+    font-size: 14px;
+    .navbar{
+        background-color: rgba(0, 0, 0, 0.123);
+        height: 10vh;
+        padding: 1rem 4rem;
+        @include flexbox('', center, space-between);
+    }
+    .darkElements{
+        background-color: hsl(209, 23%, 22%);
+        color: hsl(0, 0%, 100%);
+    }
+    .lightElements{
+        background-color: hsl(0, 0%, 100%);
+    }
+}
+.darkApp{
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(207, 26%, 17%);
+}
+.lightApp{
+    color:  hsl(200, 15%, 8%);
+    background-color: hsl(0, 0%, 98%);
+}
