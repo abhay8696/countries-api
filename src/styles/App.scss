@@ -7,7 +7,10 @@
     @include flexbox(column, '', '');
     font-size: 14px;
     .navbar, .appBody{
-        padding: 1rem 4rem;
+        padding: 3rem 5rem;
+        @include md-lg-screen{
+            padding: 2rem 4rem;
+        }
         @include sm-md-screen{
             padding: 1rem 2rem;
         }
@@ -31,8 +34,8 @@
         .themeButton{
             @include flexbox('', center, '');
             cursor: pointer;
-            height: 100%;
-            padding: 0 1rem;
+            // height: 10vh;
+            padding: 1rem 1rem;
             border-radius: 0.3rem;
             span{
                 margin-left: 8px;
@@ -47,11 +50,22 @@
         .menu{
             width: 100%;
             @include flexbox('', center, space-between);
+            @include md-below-screen{
+                @include flexbox(column, center, '')
+            }
 
+            .searchBox, .filter{
+                padding: 1rem 2rem;
+            }
             .searchBox{
                 width: 500px;
-                padding: 1rem 2rem;
-                border-radius: 0.3rem;
+                @include md-lg-screen{
+                    width: 350px;
+                }
+                @include md-below-screen{
+                    width: 100%;
+                    margin-bottom: 1rem
+                }
                 @include flexbox('', center, '');
                 input{
                     flex: 1;
@@ -59,16 +73,27 @@
                     color: inherit;
                 }
             }
+
+            .filter{
+                width: 200px;
+                @include md-below-screen{
+                    width: 100%;
+                    margin-bottom: 1rem
+                }
+                @include flexbox('', center, space-between);
+            }
         }
     }
     .darkElements{
         background-color: hsl(209, 23%, 22%);
         color: hsl(0, 0%, 100%);
-        box-shadow: 0px 5px 10px #2020201c;
+        box-shadow: 0px 5px 10px 1px #2020204d;
+        border-radius: 0.3rem;
     }
     .lightElements{
         background-color: hsl(0, 0%, 100%);
-        box-shadow: 0px 5px 10px #2020201c;
+        box-shadow: 0px 5px 10px 1px #2020201c;
+        border-radius: 0.3rem;
     }
 }
 

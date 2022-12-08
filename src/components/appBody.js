@@ -4,6 +4,8 @@ import { DarkThemeContext } from '../context/darkThemeContext';
 //styles
 import '../styles/App.scss';
 import { BsSearch } from 'react-icons/bs';
+import { MdKeyboardArrowDown } from 'react-icons/md'
+import { SlArrowDown } from 'react-icons/sl'
 
 const AppBody = () => {
     //context
@@ -11,18 +13,25 @@ const AppBody = () => {
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
     //functions
     const
-    themeFunction = ()=> {
+    themeForSearch = ()=> {
         if(darkTheme) return 'searchBox darkElements';
         return 'searchBox lightElements';
+    },
+    themeForFilter = ()=> {
+        if(darkTheme) return 'filter darkElements';
+        return 'filter lightElements';
     }
     return (
         <div className='appBody'>
             <div className='menu'>
-                <div className={themeFunction()}>
+                <div className={themeForSearch()}>
                     <BsSearch/>
                     <input placeholder='search for a country'/>
                 </div>
-                <select></select>
+                <div className={themeForFilter()}>
+                    <span>Filter by Region</span>
+                    <SlArrowDown/>
+                </div>
             </div>
         <h1>Here goes flags</h1>
         </div>

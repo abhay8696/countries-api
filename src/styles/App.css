@@ -8,7 +8,12 @@
   font-size: 14px;
 }
 .App .navbar, .App .appBody {
-  padding: 1rem 4rem;
+  padding: 3rem 5rem;
+}
+@media only screen and (min-width: 720px) and (max-width: 960px) {
+  .App .navbar, .App .appBody {
+    padding: 2rem 4rem;
+  }
 }
 @media only screen and (min-width: 480px) and (max-width: 720px) {
   .App .navbar, .App .appBody {
@@ -43,8 +48,7 @@
   align-items: center;
   justify-content: "";
   cursor: pointer;
-  height: 100%;
-  padding: 0 1rem;
+  padding: 1rem 1rem;
   border-radius: 0.3rem;
 }
 .App .navbar .themeButton span {
@@ -60,28 +64,63 @@
   align-items: center;
   justify-content: space-between;
 }
+@media only screen and (max-width: 720px) {
+  .App .appBody .menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: "";
+  }
+}
+.App .appBody .menu .searchBox, .App .appBody .menu .filter {
+  padding: 1rem 2rem;
+}
 .App .appBody .menu .searchBox {
   width: 500px;
-  padding: 1rem 2rem;
-  border-radius: 0.3rem;
   display: flex;
   flex-direction: "";
   align-items: center;
   justify-content: "";
+}
+@media only screen and (min-width: 720px) and (max-width: 960px) {
+  .App .appBody .menu .searchBox {
+    width: 350px;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .App .appBody .menu .searchBox {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }
 .App .appBody .menu .searchBox input {
   flex: 1;
   margin-left: 8px;
   color: inherit;
 }
+.App .appBody .menu .filter {
+  width: 200px;
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: space-between;
+}
+@media only screen and (max-width: 720px) {
+  .App .appBody .menu .filter {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+}
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);
   color: hsl(0deg, 0%, 100%);
-  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
+  box-shadow: 0px 5px 10px 1px rgba(32, 32, 32, 0.3019607843);
+  border-radius: 0.3rem;
 }
 .App .lightElements {
   background-color: hsl(0deg, 0%, 100%);
-  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
+  box-shadow: 0px 5px 10px 1px rgba(32, 32, 32, 0.1098039216);
+  border-radius: 0.3rem;
 }
 
 .darkApp {
