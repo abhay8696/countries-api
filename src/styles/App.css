@@ -7,15 +7,35 @@
   justify-content: "";
   font-size: 14px;
 }
-.App .navbar {
-  background-color: rgba(0, 0, 0, 0.123);
-  height: 10vh;
+.App .navbar, .App .appBody {
   padding: 1rem 4rem;
+}
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .App .navbar, .App .appBody {
+    padding: 1rem 2rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .App .navbar, .App .appBody {
+    padding: 1rem 1rem;
+  }
+}
+.App .navbar {
+  height: 10vh;
   display: flex;
   flex-direction: "";
   align-items: center;
   justify-content: space-between;
-  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
+}
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .App .navbar h1 {
+    font-size: 24px;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .App .navbar h1 {
+    font-size: 18px;
+  }
 }
 .App .navbar .themeButton {
   display: flex;
@@ -33,12 +53,35 @@
 .App .navbar .themeButton:hover {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
 }
+.App .appBody .menu {
+  width: 100%;
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: space-between;
+}
+.App .appBody .menu .searchBox {
+  width: 500px;
+  padding: 1rem 2rem;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: "";
+}
+.App .appBody .menu .searchBox input {
+  flex: 1;
+  margin-left: 8px;
+  color: inherit;
+}
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);
   color: hsl(0deg, 0%, 100%);
+  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
 }
 .App .lightElements {
   background-color: hsl(0deg, 0%, 100%);
+  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
 }
 
 .darkApp {

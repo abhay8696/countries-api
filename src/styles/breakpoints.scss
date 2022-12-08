@@ -1,0 +1,77 @@
+$breakpoints: (
+    "xs": 0,
+    "sm": 480px,
+    "md": 720px,
+    "lg": 960px,
+    "xl": 1200px,
+);
+$xs: 0;
+$sm: 480px;
+$md: 720px;
+$lg: 960px;
+$xl: 1200px;
+
+
+@mixin xs-sm-screen {
+    @media only screen and (min-width: $xs) and (max-width: $sm){
+        @content;
+    }
+}
+@mixin sm-below-screen {
+    @media only screen and (max-width: $sm){
+        @content;
+    }
+}
+@mixin sm-above-screen {
+    @media only screen and (min-width: $sm){
+        @content;
+    }
+}
+
+@mixin sm-md-screen {
+    @media only screen and (min-width: $sm) and (max-width: $md){
+        @content;
+    }
+}
+@mixin md-below-screen {
+    @media only screen and (max-width: $md){
+        @content;
+    }
+}
+@mixin md-above-screen {
+    @media only screen and (min-width: $md){
+        @content;
+    }
+}
+
+@mixin md-lg-screen {
+    @media only screen and (min-width: $md) and (max-width: $lg){
+        @content;
+    }
+}
+@mixin lg-below-screen {
+    @media only screen and (max-width: $lg){
+        @content;
+    }
+}
+@mixin lg-above-screen {
+    @media only screen and (min-width: $lg){
+        @content;
+    }
+}
+
+@mixin lg-xl-screen {
+    @media only screen and (min-width: $lg){
+        @content;
+    }
+}
+@mixin xl-below-screen {
+    @media only screen and (max-width: $xl){
+        @content;
+    }
+}
+@mixin xl-above-screen {
+    @media only screen and (min-width: $xl){
+        @content;
+    }
+}

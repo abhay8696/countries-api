@@ -5,6 +5,7 @@ import axios from 'axios';
 import './styles/App.css';
 import Navbar from './components/navbar';
 import { DarkThemeContext } from './context/darkThemeContext';
+import AppBody from './components/appBody';
 
 function App() {
 
@@ -35,7 +36,7 @@ function App() {
     <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
     <div className={themFunction()}>
       <Navbar/>
-      <h1>APP BODY</h1>
+      <AppBody/>
     </div>
     </DarkThemeContext.Provider>
   );
