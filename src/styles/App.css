@@ -15,6 +15,23 @@
   flex-direction: "";
   align-items: center;
   justify-content: space-between;
+  box-shadow: 0px 5px 10px rgba(32, 32, 32, 0.1098039216);
+}
+.App .navbar .themeButton {
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: "";
+  cursor: pointer;
+  height: 100%;
+  padding: 0 1rem;
+  border-radius: 0.3rem;
+}
+.App .navbar .themeButton span {
+  margin-left: 8px;
+}
+.App .navbar .themeButton:hover {
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
 }
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);

@@ -11,6 +11,21 @@
         height: 10vh;
         padding: 1rem 4rem;
         @include flexbox('', center, space-between);
+        box-shadow: 0px 5px 10px #2020201c;
+
+        .themeButton{
+            @include flexbox('', center, '');
+            cursor: pointer;
+            height: 100%;
+            padding: 0 1rem;
+            border-radius: 0.3rem;
+            span{
+                margin-left: 8px;
+            }
+            &:hover{
+                box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
+            }
+        }
     }
     .darkElements{
         background-color: hsl(209, 23%, 22%);

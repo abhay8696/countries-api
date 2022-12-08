@@ -3,6 +3,9 @@ import React, { useContext, useState } from 'react';
 import { DarkThemeContext } from '../context/darkThemeContext';
 //styles
 import '../styles/App.scss'
+//icons
+import { BsSun } from 'react-icons/bs'
+import { BsMoonFill } from 'react-icons/bs'
 
 const Navbar = () => {
     //context
@@ -16,9 +19,9 @@ const Navbar = () => {
     displayThemeButton = ()=> {
 
         return (
-            <button onClick={()=> setDarkTheme(!darkTheme)}>
-                {darkTheme ? <span>Light Mode</span> : <span>Dark Mode</span>}
-            </button>
+            <div onClick={()=> setDarkTheme(!darkTheme)} className='themeButton'>
+                {darkTheme ? <><BsSun/><span>Light Mode</span></> : <><BsMoonFill/><span>Dark Mode</span></>}
+            </div>
         )
     },
     themeFunction = ()=> {
