@@ -81,6 +81,27 @@
                     margin-bottom: 1rem
                 }
                 @include flexbox('', center, space-between);
+                cursor: pointer;
+                position: relative;
+
+                .dropDown{
+                    width: 100%;
+                    position: absolute;
+                    top: calc(100% + 0.5rem);
+                    left: 0;
+                    @include flexbox(column, flex-start, '');
+                    .dropDownItem{
+                        padding: 0.5rem 1rem;
+                        cursor: pointer;
+                        width: 100%;
+                        &:first-child{
+                            border-radius: 0.3rem 0.3rem 0 0;
+                        }
+                        &:last-child{
+                            border-radius: 0 0 0.3rem 0.3rem;
+                        }
+                    }
+                }
             }
         }
     }
@@ -89,11 +110,23 @@
         color: hsl(0, 0%, 100%);
         box-shadow: 0px 5px 10px 1px #2020204d;
         border-radius: 0.3rem;
+
+        .dropDownItem{
+            &:hover{
+                background-color: #516a80;
+            }
+        }
     }
     .lightElements{
         background-color: hsl(0, 0%, 100%);
         box-shadow: 0px 5px 10px 1px #2020201c;
         border-radius: 0.3rem;
+
+        .dropDownItem{
+            &:hover{
+                background-color: #cccccc;
+            }
+        }
     }
 }
 

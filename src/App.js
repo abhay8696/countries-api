@@ -36,7 +36,7 @@ function App() {
     <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
     <div className={themFunction()}>
       <Navbar/>
-      <AppBody/>
+      <AppBody countriesArray={countriesArray}/>
     </div>
     </DarkThemeContext.Provider>
   );
