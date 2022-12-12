@@ -104,6 +104,9 @@
                 }
             }
         }
+        .flag{
+            @include flexbox(column, flex-start, '');
+        }
     }
     .darkElements{
         background-color: hsl(209, 23%, 22%);

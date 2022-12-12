@@ -134,6 +134,12 @@
 .App .appBody .menu .filter .dropDown .dropDownItem:last-child {
   border-radius: 0 0 0.3rem 0.3rem;
 }
+.App .appBody .flag {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: "";
+}
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);
   color: hsl(0deg, 0%, 100%);

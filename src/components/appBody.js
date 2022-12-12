@@ -6,6 +6,7 @@ import '../styles/App.scss';
 import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { SlArrowDown } from 'react-icons/sl'
+import Flag from './flag';
 
 const AppBody = (props) => {
     //props
@@ -40,6 +41,9 @@ const AppBody = (props) => {
                 <div className='dropDownItem'>Oceania</div>
             </div>
         )
+    },
+    displayFlags = ()=> {
+
     }
     return (
         <div className='appBody'>
@@ -56,6 +60,7 @@ const AppBody = (props) => {
             </div>
             <div className='flags'>
                 <h1>Flags Go Here</h1>
+                {countriesArray && <Flag country={countriesArray[2]}/>}
             </div>
         </div>
     );
