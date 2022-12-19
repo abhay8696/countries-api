@@ -94,6 +94,7 @@
                     position: absolute;
                     top: calc(100% + 0.5rem);
                     left: 0;
+                    z-index: 10;
                     @include flexbox(column, flex-start, '');
                     .dropDownItem{
                         padding: 0.5rem 1rem;
@@ -153,6 +154,9 @@
                 grid-auto-rows: 1fr;
                 gap: 4rem 5rem;
             }
+            @include sm-below-screen{
+                @include flexbox(column, center, '')
+            }
             grid-auto-flow: row;
             margin-top: 2rem;
             box-sizing: border-box;
@@ -167,6 +171,11 @@
                 &:hover{
                     transform: scale(105%);
                     cursor: pointer;
+                }
+                @include sm-below-screen{
+                    min-width: 90vw;
+                    max-width: 90vw;
+                    margin-bottom: 1rem;
                 }
                 img{
                     width: 100%;

@@ -128,6 +128,7 @@
   position: absolute;
   top: calc(100% + 0.5rem);
   left: 0;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -197,6 +198,14 @@
     gap: 4rem 5rem;
   }
 }
+@media only screen and (max-width: 480px) {
+  .App .appBody .flags {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: "";
+  }
+}
 .App .appBody .flags .flag {
   display: flex;
   flex-direction: column;
@@ -212,6 +221,13 @@
 .App .appBody .flags .flag:hover {
   transform: scale(105%);
   cursor: pointer;
+}
+@media only screen and (max-width: 480px) {
+  .App .appBody .flags .flag {
+    min-width: 90vw;
+    max-width: 90vw;
+    margin-bottom: 1rem;
+  }
 }
 .App .appBody .flags .flag img {
   width: 100%;
