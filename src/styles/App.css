@@ -8,7 +8,7 @@
   font-size: 14px;
 }
 .App .navbar, .App .appBody {
-  padding: 3rem 5rem;
+  padding: 2rem 5rem;
 }
 @media only screen and (min-width: 720px) and (max-width: 960px) {
   .App .navbar, .App .appBody {
@@ -57,8 +57,18 @@
 .App .navbar .themeButton:hover {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
 }
+.App .appBody {
+  display: flex;
+  flex-direction: column;
+  align-items: "";
+  justify-content: "";
+  height: 90vh;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .App .appBody .menu {
   width: 100%;
+  margin-top: 2rem;
   display: flex;
   flex-direction: "";
   align-items: center;
@@ -134,11 +144,102 @@
 .App .appBody .menu .filter .dropDown .dropDownItem:last-child {
   border-radius: 0 0 0.3rem 0.3rem;
 }
-.App .appBody .flag {
+.App .appBody .flags {
+  display: grid;
+  overflow-y: auto;
+  flex: 1;
+  overflow-x: hidden;
+  grid-auto-flow: row;
+  margin-top: 2rem;
+  box-sizing: border-box;
+}
+.App .appBody .flags::-webkit-scrollbar {
+  background-color: inherit;
+  width: 10px;
+  display: none;
+}
+.App .appBody .flags::-webkit-scrollbar-track {
+  background-color: inherit;
+}
+.App .appBody .flags::-webkit-scrollbar-thumb {
+  background-color: #516a80;
+  opacity: 0;
+}
+@media only screen and (min-width: 960px) {
+  .App .appBody .flags {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 3rem 2rem;
+  }
+}
+@media only screen and (min-width: 720px) and (max-width: 960px) {
+  .App .appBody .flags {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 2rem 1rem;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .App .appBody .flags {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 3rem 2rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .App .appBody .flags {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-auto-rows: 1fr;
+    gap: 4rem 5rem;
+  }
+}
+.App .appBody .flags .flag {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: "";
+  min-width: 200px;
+  max-width: 300px;
+  padding-bottom: 2rem;
+  transition: transform;
+  transition-duration: 500ms;
+  transform: scale(100%);
+}
+.App .appBody .flags .flag:hover {
+  transform: scale(105%);
+  cursor: pointer;
+}
+.App .appBody .flags .flag img {
+  width: 100%;
+  height: 175px;
+  border-radius: 0.3rem 0.3rem 0 0;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+@media only screen and (min-width: 960px) {
+  .App .appBody .flags .flag img {
+    height: 175px;
+  }
+}
+@media only screen and (min-width: 720px) and (max-width: 960px) {
+  .App .appBody .flags .flag img {
+    height: 150px;
+  }
+}
+.App .appBody .flags .flag .flagName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin: 1rem 1rem;
+}
+.App .appBody .flags .flag .flagData {
+  margin: 0 1rem 0.5rem 1rem;
+}
+.App .appBody .flags .flag .flagData .flagDataInfo {
+  font-weight: lighter;
 }
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);

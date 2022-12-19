@@ -10,11 +10,6 @@ const Flag = props => {
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
-    console.log(country?.name?.common);
-    console.log(country?.population);
-    console.log(country?.region);
-    console.log(country?.capital[0]);
-    console.log(country?.flags.png);
     //functions
     const
     themeForFlag = ()=> {
@@ -24,9 +19,10 @@ const Flag = props => {
     return (
         <div className={themeForFlag()}>
             <img src={country?.flags.png} alt={country?.name?.common}/>
-            <span>Population: {country?.population}</span>
-            <span>Region: {country?.region}</span>
-            <span>Capital: {country?.capital[0]}</span>
+            <span className='flagName'>{country?.name?.common}</span>
+            <span className='flagData'>Population: <span className='flagDataInfo'>{country?.population}</span></span>
+            <span className='flagData'>Region: <span className='flagDataInfo'>{country?.region}</span></span>
+            <span className='flagData'>Capital: <span className='flagDataInfo'>{country?.capital?.[0]}</span></span>
         </div>
     );
 };

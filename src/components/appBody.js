@@ -43,7 +43,11 @@ const AppBody = (props) => {
         )
     },
     displayFlags = ()=> {
-
+        const arr = [];
+        countriesArray.map(country=> {
+            arr.push(<Flag country={country}/>)
+        })
+        return arr;
     }
     return (
         <div className='appBody'>
@@ -59,8 +63,7 @@ const AppBody = (props) => {
                 </div>
             </div>
             <div className='flags'>
-                <h1>Flags Go Here</h1>
-                {countriesArray && <Flag country={countriesArray[2]}/>}
+                {countriesArray && displayFlags()}
             </div>
         </div>
     );
