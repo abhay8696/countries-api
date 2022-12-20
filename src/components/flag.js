@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 //context
 import { DarkThemeContext } from '../context/darkThemeContext';
+//functions
+import { getCountryInfo } from '../functions/axiosFunctions';
 //styles
 import '../styles/App.scss';
 
@@ -15,9 +17,13 @@ const Flag = props => {
     themeForFlag = ()=> {
         if(darkTheme) return 'flag darkElements';
         return 'flag lightElements';
+    },
+    getFlagInfo = async name=> {
+        console.log(name);
+        console.log(await getCountryInfo(name));
     }
     return (
-        <div className={themeForFlag()}>
+        <div className={themeForFlag()} onClick={()=>getFlagInfo(country?.name?.common)}>
             <img src={country?.flags.png} alt={country?.name?.common}/>
             <span className='flagName'>{country?.name?.common}</span>
             <span className='flagData'>Population: <span className='flagDataInfo'>{country?.population}</span></span>

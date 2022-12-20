@@ -1,58 +1,40 @@
 import { useEffect, useState } from 'react';
 //dependecies
 import axios from 'axios';
+//context
+import { DarkThemeContext } from './context/darkThemeContext';
+import { AllCountriesContext } from './context/allCountriesContext';
+//functions
+import { getAllCountries, getCountryInfo } from './functions/axiosFunctions';
+import { filterCountries } from './functions/otherFunctions';
 //styles
 import './styles/App.css';
 import Navbar from './components/navbar';
-import { DarkThemeContext } from './context/darkThemeContext';
 import AppBody from './components/appBody';
 
 function App() {
 
   const 
   [countriesArray, setCountriesArray] = useState(),
-  [countriesArray2, setCountriesArray2] = useState([]),
+  [homePageCountries, setHomePageCountries] = useState([]),
   [darkTheme, setDarkTheme] = useState(true);
   //variables
-  const displayCountries = ['germany', 'united states of america', 'brazil', 'iceland', 'afghanistan', 'sweden', 'albania', 'algeria'];
+  const displayCountries = ['GER', 'USA', 'BRA', 'GBR', 'AFG', 'SWE', 'ALB', 'IND'];
 
   useEffect(()=> {
-    getCountries();
-    setCountriesArray2(getCountries2(displayCountries, []));
+    fetchCountries();
   }, []);
+  useEffect(()=> {
+    if(countriesArray){
+      console.log('inside useEffect');
+      setHomePageCountries(filterCountries(countriesArray, displayCountries));
+    }
+  }, [countriesArray])
   //functions
   const
-  getCountries = ()=> {
-    axios.get('https://restcountries.com/v3.1/all')
-    .then(function (response) {
-      setCountriesArray(response.data);
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
-  },
-  getCountries2 = (arr=[], resultArr=[])=> {
-    //if !arr.length return resultArr
-    //call axios func with arr.shift() as parameter
-    //.then push data in result arr
-    //.then recurse(arr, resultArr)
-    if(!arr.length) {
-      setCountriesArray2(resultArr);
-      return resultArr;
-    }
-    const temp = arr.shift();
-    // console.log(`getting country data of ${temp}`)
-    
-    axios.get(`https://restcountries.com/v3.1/name/${temp}`)
-    .then(response=> {
-      console.log(response?.data?.[0]);
-      resultArr.push(response?.data?.[0]);
-      getCountries2(arr, resultArr);
-    })
-    .catch(function (error) {
-      console.log(error);
-      console.log(`found error at ${temp} country`);
-    })
+  fetchCountries = async ()=> {
+    const data = await getAllCountries();
+    setCountriesArray(data);
   },
   themFunction = ()=> {
     if(darkTheme) return "App darkApp";
@@ -61,25 +43,15 @@ function App() {
 
   return (
     <DarkThemeContext.Provider value={[darkTheme, setDarkTheme]}>
+    <AllCountriesContext.Provider value={[countriesArray, setCountriesArray]}>
     <div className={themFunction()}>
       <Navbar/>
-      <AppBody countriesArray={countriesArray2}/>
+      <AppBody homePageCountries={homePageCountries}/>
     </div>
+    </AllCountriesContext.Provider>
     </DarkThemeContext.Provider>
   );
 }
 
 export default App;
 
-
-
-
-// axios.get(`https://restcountries.com/v3.1/name/${displayCountries.shift()}`)
-// .then(function (response) {
-//   console.log(response?.data?.[0]);
-//   arr.push(response?.data?.[0]);
-//   setCountriesArray2(arr)
-// })
-// .catch(function (error) {
-//   console.log(error);
-// })
