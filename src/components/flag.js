@@ -24,7 +24,7 @@ const Flag = props => {
     }
     return (
         <div className={themeForFlag()} onClick={()=>getFlagInfo(country?.name?.common)}>
-            <img src={country?.flags.png} alt={country?.name?.common}/>
+            <img src={country?.flags?.png} alt={country?.name?.common}/>
             <span className='flagName'>{country?.name?.common}</span>
             <span className='flagData'>Population: <span className='flagDataInfo'>{country?.population}</span></span>
             <span className='flagData'>Region: <span className='flagDataInfo'>{country?.region}</span></span>

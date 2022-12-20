@@ -25,11 +25,17 @@ const AppBody = (props) => {
     const 
     [dropDown, setDropDown] = useState(false),
     [searchText, setSearchText] = useState(''),
-    [filteredCountries, setFilteredCountries] = useState();
+    [filteredCountries, setFilteredCountries] = useState([]),
+    [searchedCountry, setSearchedCountry] = useState(null)
     //life cycle
     useEffect(()=> {
         const delayDebounceFn = setTimeout(async () => {
-            if(searchText.length) console.log(await getCountryInfo(searchText));
+            let data;
+            if(searchText.length) data = await getCountryInfo(searchText);
+            if(!data?.error){
+                console.log(data)
+                setSearchedCountry(data);
+            }else setSearchedCountry(null);
           // Send Axios request here
 
         }, 1500);
@@ -54,12 +60,15 @@ const AppBody = (props) => {
         if(dropDown) return(
             <div className={themeForDropDown()}>
                 {returnRegions()}
+                <div className='dropDownItem' onClick={()=> setFilteredCountries([])}>Reset</div>
             </div>
         )
     },
     displayFlags = ()=> {
         const arr = [];
-        if(filteredCountries){
+        if(searchedCountry){
+            arr.push(<Flag country={searchedCountry}/>)
+        }else if(filteredCountries.length){
             filteredCountries.map(country=> {
                 arr.push(<Flag country={country}/>)
             })

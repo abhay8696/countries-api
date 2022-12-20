@@ -17,7 +17,7 @@ export const getCountryInfo = async name=> {
       return(response?.data?.[0]);
     })
     .catch(function (error) {
-      return(error);
+      return({error:error});
     })
     return val
 }
