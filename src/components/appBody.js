@@ -11,6 +11,7 @@ import { BsSearch } from 'react-icons/bs';
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { SlArrowDown } from 'react-icons/sl'
 import Flag from './flag';
+import DetailPage from './detailPage';
 
 const AppBody = (props) => {
     //props
@@ -26,7 +27,8 @@ const AppBody = (props) => {
     [dropDown, setDropDown] = useState(false),
     [searchText, setSearchText] = useState(''),
     [filteredCountries, setFilteredCountries] = useState([]),
-    [searchedCountry, setSearchedCountry] = useState(null)
+    [searchedCountry, setSearchedCountry] = useState(null),
+    [detailPageData, setDetailPageData] = useState(null);
     //life cycle
     useEffect(()=> {
         const delayDebounceFn = setTimeout(async () => {
@@ -67,14 +69,14 @@ const AppBody = (props) => {
     displayFlags = ()=> {
         const arr = [];
         if(searchedCountry){
-            arr.push(<Flag country={searchedCountry}/>)
+            arr.push(<Flag country={searchedCountry} toggleDetailPageON={toggleDetailPageON}/>)
         }else if(filteredCountries.length){
             filteredCountries.map(country=> {
-                arr.push(<Flag country={country}/>)
+                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON}/>)
             })
         }else{
             homePageCountries?.map(country=> {
-                arr.push(<Flag country={country}/>)
+                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON}/>)
             })
         }
         
@@ -94,6 +96,13 @@ const AppBody = (props) => {
         })
 
         return arr;
+    },
+    toggleDetailPageON = data=> {
+        setDetailPageData(data);
+    },
+    toggleDetailPageOFF = ()=> setDetailPageData(null),
+    displayDetailPage = ()=> {
+        if(detailPageData) return <DetailPage country={detailPageData} toggleDetailPageOFF={toggleDetailPageOFF}/>
     }
     return (
         <div className='appBody'>
@@ -115,6 +124,7 @@ const AppBody = (props) => {
             <div className='flags'>
                 {displayFlags()}
             </div>
+            {displayDetailPage()}
         </div>
     );
 };

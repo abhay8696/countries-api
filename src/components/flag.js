@@ -8,7 +8,7 @@ import '../styles/App.scss';
 
 const Flag = props => {
     //props
-    const { country } = props;
+    const { country, toggleDetailPageON } = props;
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
@@ -18,12 +18,12 @@ const Flag = props => {
         if(darkTheme) return 'flag darkElements';
         return 'flag lightElements';
     },
-    getFlagInfo = async name=> {
-        console.log(name);
-        console.log(await getCountryInfo(name));
-    }
+    getFlagInfo = async data=> {
+        toggleDetailPageON(data);
+    };
+
     return (
-        <div className={themeForFlag()} onClick={()=>getFlagInfo(country?.name?.common)}>
+        <div className={themeForFlag()} onClick={()=>getFlagInfo(country)}>
             <img src={country?.flags?.png} alt={country?.name?.common}/>
             <span className='flagName'>{country?.name?.common}</span>
             <span className='flagData'>Population: <span className='flagDataInfo'>{country?.population}</span></span>
