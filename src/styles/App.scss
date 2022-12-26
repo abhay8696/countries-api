@@ -6,7 +6,7 @@
     height: 100vh;
     @include flexbox(column, '', '');
     font-size: 14px;
-    .navbar, .appBody{
+    .navbar, .appBody, .detailPage{
         padding: 2rem 5rem;
         @include md-lg-screen{
             padding: 2rem 4rem;
@@ -51,6 +51,7 @@
         height: 90vh;
         padding-top: 0;
         padding-bottom: 0;
+        position: relative;
         .menu{
             width: 100%;
             margin-top: 2rem;
@@ -199,6 +200,47 @@
                     .flagDataInfo{
                         font-weight: lighter;
                     }
+                }
+            }
+        }
+        .detailPage{
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            .detailPageMenu{
+                @include flexbox('', '', flex-start);
+                div{
+                    @include flexbox('', center, '');
+                    cursor: pointer;
+                    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
+                    // height: 10vh;
+                    padding: 1rem 1.5rem;
+                    border-radius: 0.3rem;
+                    margin-bottom: 4rem;
+                    @include md-lg-screen{
+                        margin-bottom: 4rem;
+                    }
+                    @include sm-md-screen{
+                        margin-bottom: 2rem;
+                    }
+                    @include sm-below-screen{
+                        margin-bottom: 2rem;
+                    }
+                    span{
+                        margin-left: 8px;
+                    }
+                }
+            }
+            .detailPageContent{
+                width: 100%;
+                @include flexbox('', center, space-evenly);
+                .bigFlag, .countryDetails{
+                    width: 50%;
+                }
+                .bigFlag img{
+                    width: 100%;
                 }
             }
         }

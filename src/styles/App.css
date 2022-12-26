@@ -7,21 +7,21 @@
   justify-content: "";
   font-size: 14px;
 }
-.App .navbar, .App .appBody {
+.App .navbar, .App .appBody, .App .detailPage {
   padding: 2rem 5rem;
 }
 @media only screen and (min-width: 720px) and (max-width: 960px) {
-  .App .navbar, .App .appBody {
+  .App .navbar, .App .appBody, .App .detailPage {
     padding: 2rem 4rem;
   }
 }
 @media only screen and (min-width: 480px) and (max-width: 720px) {
-  .App .navbar, .App .appBody {
+  .App .navbar, .App .appBody, .App .detailPage {
     padding: 1rem 2rem;
   }
 }
 @media only screen and (max-width: 480px) {
-  .App .navbar, .App .appBody {
+  .App .navbar, .App .appBody, .App .detailPage {
     padding: 1rem 1rem;
   }
 }
@@ -65,6 +65,7 @@
   height: 90vh;
   padding-top: 0;
   padding-bottom: 0;
+  position: relative;
 }
 .App .appBody .menu {
   width: 100%;
@@ -256,6 +257,61 @@
 }
 .App .appBody .flags .flag .flagData .flagDataInfo {
   font-weight: lighter;
+}
+.App .appBody .detailPage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.App .appBody .detailPage .detailPageMenu {
+  display: flex;
+  flex-direction: "";
+  align-items: "";
+  justify-content: flex-start;
+}
+.App .appBody .detailPage .detailPageMenu div {
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: "";
+  cursor: pointer;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
+  padding: 1rem 1.5rem;
+  border-radius: 0.3rem;
+  margin-bottom: 4rem;
+}
+@media only screen and (min-width: 720px) and (max-width: 960px) {
+  .App .appBody .detailPage .detailPageMenu div {
+    margin-bottom: 4rem;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .App .appBody .detailPage .detailPageMenu div {
+    margin-bottom: 2rem;
+  }
+}
+@media only screen and (max-width: 480px) {
+  .App .appBody .detailPage .detailPageMenu div {
+    margin-bottom: 2rem;
+  }
+}
+.App .appBody .detailPage .detailPageMenu div span {
+  margin-left: 8px;
+}
+.App .appBody .detailPage .detailPageContent {
+  width: 100%;
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: space-evenly;
+}
+.App .appBody .detailPage .detailPageContent .bigFlag, .App .appBody .detailPage .detailPageContent .countryDetails {
+  width: 50%;
+}
+.App .appBody .detailPage .detailPageContent .bigFlag img {
+  width: 100%;
 }
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);

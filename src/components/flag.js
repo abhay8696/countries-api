@@ -19,6 +19,7 @@ const Flag = props => {
         return 'flag lightElements';
     },
     getFlagInfo = async data=> {
+        console.log(data);
         toggleDetailPageON(data);
     };
 
