@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 //context
 import { DarkThemeContext } from '../context/darkThemeContext';
 //functions
@@ -8,20 +8,36 @@ import '../styles/App.scss';
 
 const Flag = props => {
     //props
-    const { country, toggleDetailPageON } = props;
+    const { country, toggleDetailPageON, loading, slideFront_Behind } = props;
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
     //functions
     const
     themeForFlag = ()=> {
-        if(darkTheme) return 'flag darkElements';
-        return 'flag lightElements';
+        let str = 'flag appearUp';
+        if(darkTheme) str = str.concat(' darkElements');
+        else str = str.concat(' lightElements');
+        return str;
     },
     getFlagInfo = async data=> {
         console.log(data);
+        slideFront_Behind('behind');
         toggleDetailPageON(data);
-    };
+    },
+    loadingDiv = ()=> {
+        return(
+            <div className={`${themeForFlag()} dummyFlag`}>
+                <div className='dummyImg'></div>
+                <span className='flagName'>Fetching...</span>
+                <span className='flagData'>Please Wait </span>
+                <span className='flagData'></span>
+                <span className='flagData'></span>
+            </div>
+        )
+    }
+
+    if(loading) return loadingDiv();
 
     return (
         <div className={themeForFlag()} onClick={()=>getFlagInfo(country)}>

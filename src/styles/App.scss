@@ -4,6 +4,7 @@
 .App{
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
     @include flexbox(column, '', '');
     font-size: 14px;
     .navbar, .appBody, .detailPage{
@@ -53,6 +54,7 @@
         padding-bottom: 0;
         position: relative;
         .menu{
+            opacity: 0;
             width: 100%;
             margin-top: 2rem;
             @include flexbox('', center, space-between);
@@ -112,22 +114,11 @@
             }
         }
         .flags{
+            opacity: 0;
             display: grid;
             overflow-y: auto;
             flex: 1;
             overflow-x: hidden;
-            &::-webkit-scrollbar{
-                background-color: inherit;
-                width: 10px;
-                display: none;
-            }
-            &::-webkit-scrollbar-track{
-                background-color: inherit;
-            }
-            &::-webkit-scrollbar-thumb{
-                background-color: #516a80;
-                opacity: 0;
-            }
             &:hover{
 
             }
@@ -165,10 +156,13 @@
                 @include flexbox(column, flex-start, '');
                 min-width: 200px;
                 max-width: 300px;
+                opacity: 0;
                 padding-bottom: 2rem;
                 transition: transform;
                 transition-duration: 500ms;
                 transform: scale(100%);
+                animation-name: slideFront;
+                animation-duration: 500ms;
                 &:hover{
                     transform: scale(105%);
                     cursor: pointer;
@@ -178,7 +172,7 @@
                     max-width: 90vw;
                     margin-bottom: 1rem;
                 }
-                img{
+                img, .dummyImg{
                     width: 100%;
                     height: 210px;
                     @include lg-xl-screen{
@@ -210,6 +204,12 @@
             width: 100%;
             height: 100%;
             overflow-y: scroll;
+            overflow-x: hidden;
+            opacity: 0;
+            animation-name: slideFront;
+            animation-duration: 500ms;
+            // animation-delay: 1s;
+            animation-fill-mode: forwards;
             .detailPageButton{
                 cursor: pointer;
                 box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
@@ -351,8 +351,41 @@
             }
         }
     }
+    .dummyFlag{
+        // animation: name duration timing-function delay iteration-count direction fill-mode;
+        opacity: 0.6;
+        animation-name: dummyFlagAnime;
+        animation-duration: 2000ms;
+        animation-timing-function:ease;
+        animation-iteration-count: infinite;
+    }
 }
-
+// animations
+.appearIn{
+    animation-name: appearIn; 
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+.appearUp{
+    animation-name: appearUp; 
+    animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+.slideBehind{
+    animation-name: slideBehind;
+    animation-duration: 1000ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
+.slideFront{
+    animation-name: slideFront;
+    animation-duration: 500ms;
+    animation-delay: 500ms;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+}
 
 .darkApp{
     color: hsl(0, 0%, 100%);
@@ -361,4 +394,55 @@
 .lightApp{
     color:  hsl(200, 15%, 8%);
     background-color: hsl(0, 0%, 98%);
+}
+
+@keyframes dummyFlagAnime {
+    0%{
+        opacity: 0.6;
+    }
+    50%{
+        opacity: 1;
+    }
+    100%{
+        opacity: 0.6;
+    }
+}
+
+@keyframes appearUp {
+    from{
+        opacity: 0;
+        transform: translateY(50%);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@keyframes appearIn {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
+}
+@keyframes slideBehind {
+    0%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
+    100%{
+        opacity: 0;
+        transform: translateX(10%);
+    }
+}
+@keyframes slideFront {
+    0%{
+        opacity: 0;
+        transform: translateX(-10%);
+    }
+    100%{
+        opacity: 1;
+        transform: translateX(0%);
+    }
 }

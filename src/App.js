@@ -19,7 +19,7 @@ function App() {
   [homePageCountries, setHomePageCountries] = useState([]),
   [darkTheme, setDarkTheme] = useState(true);
   //variables
-  const displayCountries = ['GER', 'USA', 'BRA', 'GBR', 'KOR', 'SWE', 'JPN', 'IND', 'ISL', 'NOR', 'IRL'];
+  const displayCountries = ['GER', 'USA', 'GBR', 'KOR', 'SWE', 'JPN', 'IND', 'NOR'];
 
   useEffect(()=> {
     fetchCountries();

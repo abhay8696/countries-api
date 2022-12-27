@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useState, useContext } from 'react';
 //context
 import { DarkThemeContext } from '../context/darkThemeContext';
 import { AllCountriesContext } from '../context/allCountriesContext';
@@ -9,16 +9,22 @@ import { getBorderCountries } from '../functions/otherFunctions';
 
 const DetailPage = props => {
     //props
-    const { country, toggleDetailPageOFF, toggleDetailPageON } = props;
+    const { country, toggleDetailPageOFF, toggleDetailPageON, slideFront_Behind } = props;
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext),
     [countriesArray, setCountriesArray] = useContext(AllCountriesContext);
+    //states
+    const
+    [menuStyles, setMenuStyles] = useState('detailPageMenu'),
+    [contentStyles, setContentStyles] = useState('detailPageContent');
     //functions
     const
     themeForPage= ()=> {
-        if(darkTheme) return 'detailPage darkElements';
-        return 'detailPage lightElements';
+        let str = 'detailPage';
+
+        if(darkTheme) return str = str.concat(' darkElements');
+        return str = str.concat(' lightElements');
     },
     displayBorders = array=> {
         if(!array) return null;
@@ -33,16 +39,22 @@ const DetailPage = props => {
                 </span>)
         });
         return arr;
+    },
+    handleBackButton = ()=> {
+        toggleDetailPageOFF(); 
+        slideFront_Behind('front')
+        setMenuStyles('detailPageMenu slideBehind');
+        setContentStyles('detailPageContent slideBehind')
     }
 
     return (
         <div className={themeForPage()}>
-            <div className='detailPageMenu'>
-                <div onClick={()=>toggleDetailPageOFF()} className='detailPageButton'>
+            <div className={menuStyles}>
+                <div onClick={()=>handleBackButton()} className='detailPageButton'>
                     <BsArrowLeft/> <span>Back</span>
                 </div>
             </div>
-            <div className='detailPageContent'>
+            <div className={contentStyles}>
                 <img src={country?.flags?.png} />
                 <div className='countryDetails'>
                     <h1 className='countryDetails-name'>

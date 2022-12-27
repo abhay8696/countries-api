@@ -24,6 +24,8 @@ const AppBody = (props) => {
     [countriesArray, setCountriesArray] = useContext(AllCountriesContext);
     //states
     const 
+    [menuStyles, setMenuStyles] = useState('menu appearIn'),
+    [flagsStyles, setFlagsStyles] = useState('flags appearIn'),
     [dropDown, setDropDown] = useState(false),
     [searchText, setSearchText] = useState(''),
     [filteredCountries, setFilteredCountries] = useState([]),
@@ -46,6 +48,10 @@ const AppBody = (props) => {
     }, [searchText])
     //functions
     const
+    appBodyStylesFunc = disappear=> {
+        if(disappear) setMenuStyles('menu slideBehind');
+        else setMenuStyles('menu');
+    },
     themeForSearch = ()=> {
         if(darkTheme) return 'searchBox darkElements';
         return 'searchBox lightElements';
@@ -66,17 +72,24 @@ const AppBody = (props) => {
             </div>
         )
     },
+    loadingAllCountries = ()=> {
+        let arr = [];
+        for(let i=0; i<8; i++){
+            arr.push(<Flag loading={true}/>)
+        }
+        return arr;
+    },
     displayFlags = ()=> {
         const arr = [];
         if(searchedCountry){
-            arr.push(<Flag country={searchedCountry} toggleDetailPageON={toggleDetailPageON}/>)
+            arr.push(<Flag country={searchedCountry} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
         }else if(filteredCountries.length){
             filteredCountries.map(country=> {
-                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON}/>)
+                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
             })
         }else{
             homePageCountries?.map(country=> {
-                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON}/>)
+                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
             })
         }
         
@@ -100,13 +113,30 @@ const AppBody = (props) => {
     toggleDetailPageON = data=> {
         setDetailPageData(data);
     },
-    toggleDetailPageOFF = ()=> setDetailPageData(null),
+    toggleDetailPageOFF = ()=> {
+        const tm = setTimeout(() => {
+            setDetailPageData(null)
+        }, 500);
+
+        return tm;
+    },
     displayDetailPage = ()=> {
-        if(detailPageData) return <DetailPage country={detailPageData} toggleDetailPageOFF={toggleDetailPageOFF} toggleDetailPageON={toggleDetailPageON}/>
+        if(detailPageData) return <DetailPage country={detailPageData} toggleDetailPageOFF={toggleDetailPageOFF} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>
+    },
+    slideFront_Behind = type=> {
+        console.log(type);
+        if(type === 'behind'){
+            setMenuStyles('menu slideBehind');
+            setFlagsStyles('flags slideBehind')
+        }
+        if(type === 'front'){
+            setMenuStyles('menu slideFront');
+            setFlagsStyles('flags slideFront')
+        }
     }
     return (
         <div className='appBody'>
-            <div className='menu'>
+            <div className={menuStyles}>
                 <div className={themeForSearch()}>
                     <BsSearch/>
                     <input 
@@ -121,8 +151,8 @@ const AppBody = (props) => {
                     {displayDropDown()}
                 </div>
             </div>
-            <div className='flags'>
-                {displayFlags()}
+            <div className={flagsStyles}>
+                {!countriesArray ? loadingAllCountries() : displayFlags()}
             </div>
             {displayDetailPage()}
         </div>

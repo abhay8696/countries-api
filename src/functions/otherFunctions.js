@@ -3,13 +3,19 @@ export const filterCountries = (allCountries, someCountries)=> {
     const resultArray = [];
     for(let i=0; i<allCountries.length; i++){
         if(!someCountries.length) break;
-        for(let j=0; j<someCountries.length; j++){
-            if(allCountries[i].cioc === someCountries[j]){
-                resultArray.push(allCountries[i]);
-                const index = someCountries.indexOf(j);
-                someCountries.splice(index, 1);
-            }
+        if(someCountries.includes(allCountries[i].cioc) || someCountries.includes(allCountries[i].cca3)){
+
+            resultArray.push(allCountries[i]);
+            const index = someCountries.indexOf(allCountries[i].cioc);
+            someCountries.splice(index, 1);
         }
+        // for(let j=0; j<someCountries.length; j++){
+        //     if(allCountries[i].cioc === someCountries[j] || allCountries[i].cca3 === someCountries[j]){
+        //         resultArray.push(allCountries[i]);
+        //         const index = someCountries.indexOf(j);
+        //         someCountries.splice(index, 1);
+        //     }
+        // }
     }
     return resultArray;
 }
