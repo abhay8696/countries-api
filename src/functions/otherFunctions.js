@@ -1,11 +1,5 @@
 
 export const filterCountries = (allCountries, someCountries)=> {
-    //  let resultArray
-    //  enter allCountries loop 'i'
-    //    if someCountries.length=0 break loop and return
-    //    enter loop of someCountries 'j'
-    //      if(i.cioc === j) push i in resultArray and delete j from someCountries
-    console.log('inside homePageFlages');
     const resultArray = [];
     for(let i=0; i<allCountries.length; i++){
         if(!someCountries.length) break;
@@ -24,4 +18,20 @@ export const filterByRegion = (allCountries, region)=> {
     const arr = []
     allCountries.map(i=> i.region === region ? arr.push(i) : null);
     return arr;
+}
+
+export const getBorderCountries = (array, allCountries)=> {
+    let arr = [...array], countries = [...allCountries];
+    let borderCounriesData = [];
+    while(arr.length){
+        let temp = arr.shift();
+        countries.forEach(i => {
+            if(temp === i.cioc){
+                borderCounriesData.push(i);
+                let index = countries.indexOf(i);
+                if(index > -1) countries.splice(index, 1);
+            }
+        });
+    }
+    return borderCounriesData;
 }

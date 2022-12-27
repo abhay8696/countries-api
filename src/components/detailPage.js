@@ -1,16 +1,19 @@
 import React, { useContext } from 'react';
 //context
 import { DarkThemeContext } from '../context/darkThemeContext';
+import { AllCountriesContext } from '../context/allCountriesContext';
 //styles
 import '../styles/App.scss';
 import { BsArrowLeft } from 'react-icons/bs';
+import { getBorderCountries } from '../functions/otherFunctions';
 
 const DetailPage = props => {
     //props
-    const { country, toggleDetailPageOFF } = props;
+    const { country, toggleDetailPageOFF, toggleDetailPageON } = props;
     //context
     const
-    [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
+    [darkTheme, setDarkTheme] = useContext(DarkThemeContext),
+    [countriesArray, setCountriesArray] = useContext(AllCountriesContext);
     //functions
     const
     themeForPage= ()=> {
@@ -19,9 +22,15 @@ const DetailPage = props => {
     },
     displayBorders = array=> {
         if(!array) return null;
+        console.log(country)
+        // console.log(getBorderCountries(array, countriesArray));
+        let borderCountries = getBorderCountries(array, countriesArray);
         let arr = [];
-        array.forEach(i => {
-            arr.push(<span className='detailPageButton borderButton'>{i}</span>)
+        borderCountries.forEach(i => {
+            arr.push(
+                <span className='detailPageButton borderButton' onClick={()=> toggleDetailPageON(i)}>
+                    {i?.name?.common}
+                </span>)
         });
         return arr;
     }

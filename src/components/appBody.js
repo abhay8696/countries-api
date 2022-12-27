@@ -102,7 +102,7 @@ const AppBody = (props) => {
     },
     toggleDetailPageOFF = ()=> setDetailPageData(null),
     displayDetailPage = ()=> {
-        if(detailPageData) return <DetailPage country={detailPageData} toggleDetailPageOFF={toggleDetailPageOFF}/>
+        if(detailPageData) return <DetailPage country={detailPageData} toggleDetailPageOFF={toggleDetailPageOFF} toggleDetailPageON={toggleDetailPageON}/>
     }
     return (
         <div className='appBody'>
