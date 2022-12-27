@@ -310,6 +310,7 @@
   width: 100%;
   max-width: 550px;
   display: block;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
 }
 @media only screen and (min-width: 960px) {
   .App .appBody .detailPage .detailPageContent {

@@ -26,7 +26,7 @@ export const getBorderCountries = (array, allCountries)=> {
     while(arr.length){
         let temp = arr.shift();
         countries.forEach(i => {
-            if(temp === i.cioc){
+            if(temp === i.cioc || temp === i.cca3){
                 borderCounriesData.push(i);
                 let index = countries.indexOf(i);
                 if(index > -1) countries.splice(index, 1);
