@@ -180,7 +180,7 @@
                 }
                 img{
                     width: 100%;
-                    height: 175px;
+                    height: 210px;
                     @include lg-xl-screen{
                         height: 175px;
                     }
@@ -209,15 +209,18 @@
             left: 0;
             width: 100%;
             height: 100%;
+            overflow-y: scroll;
+            .detailPageButton{
+                cursor: pointer;
+                box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
+                // height: 10vh;
+                padding: 0.5rem 1rem;
+                border-radius: 0.3rem;
+            }
             .detailPageMenu{
                 @include flexbox('', '', flex-start);
                 div{
                     @include flexbox('', center, '');
-                    cursor: pointer;
-                    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
-                    // height: 10vh;
-                    padding: 1rem 1.5rem;
-                    border-radius: 0.3rem;
                     margin-bottom: 4rem;
                     @include md-lg-screen{
                         margin-bottom: 4rem;
@@ -235,12 +238,91 @@
             }
             .detailPageContent{
                 width: 100%;
-                @include flexbox('', center, space-evenly);
-                .bigFlag, .countryDetails{
-                    width: 50%;
-                }
-                .bigFlag img{
+                img{
                     width: 100%;
+                    max-width: 550px;
+                    display: block;
+                }   
+                @include lg-above-screen{
+                    @include flexbox('', center, space-between);
+                    img{
+                        max-width: 50%
+                    }
+                    .countryDetails{
+                        width: 50%;
+                    }
+                }
+                @include lg-below-screen{
+                    @include flexbox(column, center, '');
+                    img{
+                        width: 100%
+                    }
+                    .countryDetails{
+                        width: 100%;
+                    }
+                }
+                .countryDetails{
+                    @include flexbox(column, flex-start, space-between);
+                    max-width: 550px;
+                    @include lg-above-screen{
+                        max-width: 45%;
+                    }
+                    @include md-above-screen{
+                        height: 350px;
+                    }
+                    .countryDetails-main{
+                        @include md-above-screen{ 
+                            @include flexbox('', center, space-between);
+                        }
+                        @include md-below-screen{ 
+                            @include flexbox(column, center, '');
+                        }
+                    }
+                    padding: 1rem;
+                    .countryDetails-main, .bordersDiv{
+                        line-height: 200%;
+                        width: 100%;
+                        @include xl-above-screen{
+                            width: 80%;
+                        }
+                        @include flexbox('', flex-start, space-between);
+                        .countryDetails-a, .countryDetails-b{
+                            @include flexbox(column, flex-start, '');
+                            @include md-below-screen{
+                                margin-bottom: 1rem;
+                            }
+                            .detailKey{
+                                margin-right: 4px;
+                            }
+                            .detailValue{
+                                font-weight: lighter;
+                            }
+                        }
+                    }
+                    .bordersDiv{
+                        @include flexbox('', center, flex-start);
+                        flex-wrap: wrap;
+                        @include lg-below-screen{
+                            flex-direction: column;
+                            align-items: flex-start;
+                        }
+                        .detailKey{
+                            margin-right: 8px;
+                        }
+                        margin-top: 1rem;
+                        .borderButtonsDiv{
+                            font-size: 10px;
+                            @include flexbox('', '', '');
+                            flex-wrap: wrap;
+                            .borderButton{
+                                padding: 0.5rem;
+                                min-width: 80px;
+                                max-height: 30px;
+                                @include flexbox('', center, center);
+                                margin: 4px;
+                            }
+                        }
+                    }
                 }
             }
         }

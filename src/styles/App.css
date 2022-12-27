@@ -232,7 +232,7 @@
 }
 .App .appBody .flags .flag img {
   width: 100%;
-  height: 175px;
+  height: 210px;
   border-radius: 0.3rem 0.3rem 0 0;
   -o-object-fit: fill;
      object-fit: fill;
@@ -264,6 +264,13 @@
   left: 0;
   width: 100%;
   height: 100%;
+  overflow-y: scroll;
+}
+.App .appBody .detailPage .detailPageButton {
+  cursor: pointer;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
 }
 .App .appBody .detailPage .detailPageMenu {
   display: flex;
@@ -276,10 +283,6 @@
   flex-direction: "";
   align-items: center;
   justify-content: "";
-  cursor: pointer;
-  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.219);
-  padding: 1rem 1.5rem;
-  border-radius: 0.3rem;
   margin-bottom: 4rem;
 }
 @media only screen and (min-width: 720px) and (max-width: 960px) {
@@ -302,16 +305,138 @@
 }
 .App .appBody .detailPage .detailPageContent {
   width: 100%;
+}
+.App .appBody .detailPage .detailPageContent img {
+  width: 100%;
+  max-width: 550px;
+  display: block;
+}
+@media only screen and (min-width: 960px) {
+  .App .appBody .detailPage .detailPageContent {
+    display: flex;
+    flex-direction: "";
+    align-items: center;
+    justify-content: space-between;
+  }
+  .App .appBody .detailPage .detailPageContent img {
+    max-width: 50%;
+  }
+  .App .appBody .detailPage .detailPageContent .countryDetails {
+    width: 50%;
+  }
+}
+@media only screen and (max-width: 960px) {
+  .App .appBody .detailPage .detailPageContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: "";
+  }
+  .App .appBody .detailPage .detailPageContent img {
+    width: 100%;
+  }
+  .App .appBody .detailPage .detailPageContent .countryDetails {
+    width: 100%;
+  }
+}
+.App .appBody .detailPage .detailPageContent .countryDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 550px;
+  padding: 1rem;
+}
+@media only screen and (min-width: 960px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails {
+    max-width: 45%;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails {
+    height: 350px;
+  }
+}
+@media only screen and (min-width: 720px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main {
+    display: flex;
+    flex-direction: "";
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+@media only screen and (max-width: 720px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: "";
+  }
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv {
+  line-height: 200%;
+  width: 100%;
+  display: flex;
+  flex-direction: "";
+  align-items: flex-start;
+  justify-content: space-between;
+}
+@media only screen and (min-width: 1200px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv {
+    width: 80%;
+  }
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-a, .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-b, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-a, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-b {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: "";
+}
+@media only screen and (max-width: 720px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-a, .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-b, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-a, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-b {
+    margin-bottom: 1rem;
+  }
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-a .detailKey, .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-b .detailKey, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-a .detailKey, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-b .detailKey {
+  margin-right: 4px;
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-a .detailValue, .App .appBody .detailPage .detailPageContent .countryDetails .countryDetails-main .countryDetails-b .detailValue, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-a .detailValue, .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .countryDetails-b .detailValue {
+  font-weight: lighter;
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv {
   display: flex;
   flex-direction: "";
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  margin-top: 1rem;
 }
-.App .appBody .detailPage .detailPageContent .bigFlag, .App .appBody .detailPage .detailPageContent .countryDetails {
-  width: 50%;
+@media only screen and (max-width: 960px) {
+  .App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }
-.App .appBody .detailPage .detailPageContent .bigFlag img {
-  width: 100%;
+.App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .detailKey {
+  margin-right: 8px;
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .borderButtonsDiv {
+  font-size: 10px;
+  display: flex;
+  flex-direction: "";
+  align-items: "";
+  justify-content: "";
+  flex-wrap: wrap;
+}
+.App .appBody .detailPage .detailPageContent .countryDetails .bordersDiv .borderButtonsDiv .borderButton {
+  padding: 0.5rem;
+  min-width: 80px;
+  max-height: 30px;
+  display: flex;
+  flex-direction: "";
+  align-items: center;
+  justify-content: center;
+  margin: 4px;
 }
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);
