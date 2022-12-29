@@ -8,14 +8,16 @@ import '../styles/App.scss';
 
 const Flag = props => {
     //props
-    const { country, toggleDetailPageON, loading, slideFront_Behind } = props;
+    const { country, toggleDetailPageON, loading, slideFront_Behind, searchLoad} = props;
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
     //functions
     const
     themeForFlag = ()=> {
-        let str = 'flag appearUp';
+        let str = 'flag slideFront';
+        if(searchLoad) str = 'flag fadeOut';
+        // if(loading) str = 'flag appearIn';
         if(darkTheme) str = str.concat(' darkElements');
         else str = str.concat(' lightElements');
         return str;
@@ -27,10 +29,10 @@ const Flag = props => {
     },
     loadingDiv = ()=> {
         return(
-            <div className={`${themeForFlag()} dummyFlag`}>
+            <div className={`${themeForFlag()} `}>
                 <div className='dummyImg'></div>
-                <span className='flagName'>Fetching...</span>
-                <span className='flagData'>Please Wait </span>
+                <span className='flagName dummyFlag'>Fetching...</span>
+                <span className='flagData dummyFlag'>Please Wait </span>
                 <span className='flagData'></span>
                 <span className='flagData'></span>
             </div>

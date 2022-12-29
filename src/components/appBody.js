@@ -8,6 +8,7 @@ import { filterByRegion } from '../functions/otherFunctions';
 //styles
 import '../styles/App.scss';
 import { BsSearch } from 'react-icons/bs';
+import { MdAutorenew } from 'react-icons/md'
 import { MdKeyboardArrowDown } from 'react-icons/md'
 import { SlArrowDown } from 'react-icons/sl'
 import Flag from './flag';
@@ -24,15 +25,17 @@ const AppBody = (props) => {
     [countriesArray, setCountriesArray] = useContext(AllCountriesContext);
     //states
     const 
-    [menuStyles, setMenuStyles] = useState('menu appearIn'),
-    [flagsStyles, setFlagsStyles] = useState('flags appearIn'),
+    [menuStyles, setMenuStyles] = useState('menu appearUp'),
+    [flagsStyles, setFlagsStyles] = useState('flags'),
     [dropDown, setDropDown] = useState(false),
     [searchText, setSearchText] = useState(''),
     [filteredCountries, setFilteredCountries] = useState([]),
     [searchedCountry, setSearchedCountry] = useState(null),
-    [detailPageData, setDetailPageData] = useState(null);
+    [detailPageData, setDetailPageData] = useState(null),
+    [searchLoad, setSearchLoad] = useState(false);
     //life cycle
     useEffect(()=> {
+        setSearchLoad(true);
         const delayDebounceFn = setTimeout(async () => {
             let data;
             if(searchText.length) data = await getCountryInfo(searchText);
@@ -41,7 +44,7 @@ const AppBody = (props) => {
                 setSearchedCountry(data);
             }else setSearchedCountry(null);
           // Send Axios request here
-
+            setSearchLoad(false);
         }, 1500);
     
         return () => clearTimeout(delayDebounceFn)
@@ -61,8 +64,9 @@ const AppBody = (props) => {
         return 'filter lightElements';
     },
     themeForDropDown = ()=> {
-        if(darkTheme) return 'dropDown darkElements';
-        return 'dropDown lightElements';
+        let str = 'slideDown';
+        if(darkTheme) return str = str.concat(' dropDown darkElements');
+        return str = str.concat(' dropDown lightElements');
     },
     displayDropDown = ()=> {
         if(dropDown) return(
@@ -82,20 +86,39 @@ const AppBody = (props) => {
     displayFlags = ()=> {
         const arr = [];
         if(searchedCountry){
-            arr.push(<Flag country={searchedCountry} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
+            arr.push(
+            <Flag 
+                country={searchedCountry} 
+                toggleDetailPageON={toggleDetailPageON} 
+                slideFront_Behind={slideFront_Behind}
+                searchLoad={searchLoad}
+            />)
         }else if(filteredCountries.length){
             filteredCountries.map(country=> {
-                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
+                arr.push(
+                <Flag 
+                    country={country} 
+                    toggleDetailPageON={toggleDetailPageON} 
+                    slideFront_Behind={slideFront_Behind}
+                    searchLoad={searchLoad}
+                />)
             })
         }else{
             homePageCountries?.map(country=> {
-                arr.push(<Flag country={country} toggleDetailPageON={toggleDetailPageON} slideFront_Behind={slideFront_Behind}/>)
+                arr.push(
+                <Flag 
+                    country={country} 
+                    toggleDetailPageON={toggleDetailPageON} 
+                    slideFront_Behind={slideFront_Behind}
+                    searchLoad={searchLoad}
+                />)
             })
         }
         
         return arr;
     },
     handleRegion = async region=> {
+        setSearchText('');
         const data = filterByRegion(countriesArray,region)
         if(data) setFilteredCountries(data);
     },
@@ -138,11 +161,20 @@ const AppBody = (props) => {
         <div className='appBody'>
             <div className={menuStyles}>
                 <div className={themeForSearch()}>
+                    {searchLoad ? 
+                    <span className='searchLoad searchIcon'>
+                    <MdAutorenew/>
+                    </span> 
+                    : 
+                    <span className='searchIcon'>
                     <BsSearch/>
+                    </span>}
+                    
                     <input 
                         placeholder='search for a country' 
                         autoComplete='off'
                         onChange={evt=> setSearchText(evt.target.value)}
+                        value={searchText}
                     />
                 </div>
                 <div className={themeForFilter()} onClick={()=> setDropDown(!dropDown)}>
