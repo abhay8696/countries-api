@@ -29,6 +29,7 @@ const AppBody = (props) => {
     [flagsStyles, setFlagsStyles] = useState('flags'),
     [dropDown, setDropDown] = useState(false),
     [searchText, setSearchText] = useState(''),
+    [currentRegion, setCurrentRegion] = useState('Filter by Region'),
     [filteredCountries, setFilteredCountries] = useState([]),
     [searchedCountry, setSearchedCountry] = useState(null),
     [detailPageData, setDetailPageData] = useState(null),
@@ -70,9 +71,11 @@ const AppBody = (props) => {
     },
     displayDropDown = ()=> {
         if(dropDown) return(
+            <div className='filterOptionDiv' onClick={()=> setDropDown(false)}>
             <div className={themeForDropDown()}>
                 {returnRegions()}
-                <div className='dropDownItem' onClick={()=> setFilteredCountries([])}>Reset</div>
+                <div className='dropDownItem' onClick={()=> handleRegion(undefined)}>Reset</div>
+            </div>
             </div>
         )
     },
@@ -92,6 +95,7 @@ const AppBody = (props) => {
                 toggleDetailPageON={toggleDetailPageON} 
                 slideFront_Behind={slideFront_Behind}
                 searchLoad={searchLoad}
+                clearSearchText={clearSearchText}
             />)
         }else if(filteredCountries.length){
             filteredCountries.map(country=> {
@@ -101,6 +105,7 @@ const AppBody = (props) => {
                     toggleDetailPageON={toggleDetailPageON} 
                     slideFront_Behind={slideFront_Behind}
                     searchLoad={searchLoad}
+                    clearSearchText={clearSearchText}
                 />)
             })
         }else{
@@ -111,6 +116,7 @@ const AppBody = (props) => {
                     toggleDetailPageON={toggleDetailPageON} 
                     slideFront_Behind={slideFront_Behind}
                     searchLoad={searchLoad}
+                    clearSearchText={clearSearchText}
                 />)
             })
         }
@@ -119,8 +125,15 @@ const AppBody = (props) => {
     },
     handleRegion = async region=> {
         setSearchText('');
-        const data = filterByRegion(countriesArray,region)
-        if(data) setFilteredCountries(data);
+        if(region){
+            const data = filterByRegion(countriesArray,region)
+            if(data) setFilteredCountries(data);
+            setCurrentRegion(`${region}`);
+        }
+        else{
+            setFilteredCountries([])
+            setCurrentRegion('Filter by Region');
+        }
     },
     returnRegions = ()=> {
         const arr = [];
@@ -156,7 +169,8 @@ const AppBody = (props) => {
             setMenuStyles('menu slideFront');
             setFlagsStyles('flags slideFront')
         }
-    }
+    },
+    clearSearchText = ()=> setSearchText('');
     return (
         <div className='appBody'>
             <div className={menuStyles}>
@@ -178,15 +192,15 @@ const AppBody = (props) => {
                     />
                 </div>
                 <div className={themeForFilter()} onClick={()=> setDropDown(!dropDown)}>
-                    <span>Filter by Region</span>
+                    <span>{currentRegion}</span>
                     <SlArrowDown/>
-                    {displayDropDown()}
                 </div>
             </div>
             <div className={flagsStyles}>
                 {!countriesArray ? loadingAllCountries() : displayFlags()}
             </div>
             {displayDetailPage()}
+            {displayDropDown()}
         </div>
     );
 };

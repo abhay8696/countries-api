@@ -141,28 +141,6 @@
     margin-bottom: 1rem;
   }
 }
-.App .appBody .menu .filter .dropDown {
-  width: 100%;
-  position: absolute;
-  top: calc(100% + 0.5rem);
-  left: 0;
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: "";
-}
-.App .appBody .menu .filter .dropDown .dropDownItem {
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  width: 100%;
-}
-.App .appBody .menu .filter .dropDown .dropDownItem:first-child {
-  border-radius: 0.3rem 0.3rem 0 0;
-}
-.App .appBody .menu .filter .dropDown .dropDownItem:last-child {
-  border-radius: 0 0 0.3rem 0.3rem;
-}
 .App .appBody .flags {
   display: grid;
   overflow-y: auto;
@@ -449,6 +427,34 @@
   justify-content: center;
   margin: 4px;
 }
+.App .appBody .filterOptionDiv {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+.App .appBody .filterOptionDiv .dropDown {
+  width: 200px;
+  position: absolute;
+  top: 5.5rem;
+  right: 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: "";
+}
+.App .appBody .filterOptionDiv .dropDown .dropDownItem {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+.App .appBody .filterOptionDiv .dropDown .dropDownItem:first-child {
+  border-radius: 0.3rem 0.3rem 0 0;
+}
+.App .appBody .filterOptionDiv .dropDown .dropDownItem:last-child {
+  border-radius: 0 0 0.3rem 0.3rem;
+}
 .App .darkElements {
   background-color: hsl(209deg, 23%, 22%);
   color: hsl(0deg, 0%, 100%);
@@ -494,6 +500,17 @@
           animation-name: appearUp;
   -webkit-animation-duration: 1000ms;
           animation-duration: 1000ms;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+  -webkit-animation-timing-function: ease-in-out;
+          animation-timing-function: ease-in-out;
+}
+
+.slideDown {
+  -webkit-animation-name: slideDown;
+          animation-name: slideDown;
+  -webkit-animation-duration: 200ms;
+          animation-duration: 200ms;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-timing-function: ease-in-out;
@@ -588,6 +605,26 @@
     transform: translateY(50%);
   }
   to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@-webkit-keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10%);
+  }
+  100% {
     opacity: 1;
     transform: translateY(0%);
   }

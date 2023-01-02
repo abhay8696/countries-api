@@ -8,7 +8,7 @@ import '../styles/App.scss';
 
 const Flag = props => {
     //props
-    const { country, toggleDetailPageON, loading, slideFront_Behind, searchLoad} = props;
+    const { country, toggleDetailPageON, loading, slideFront_Behind, searchLoad, clearSearchText} = props;
     //context
     const
     [darkTheme, setDarkTheme] = useContext(DarkThemeContext);
@@ -24,6 +24,7 @@ const Flag = props => {
     },
     getFlagInfo = async data=> {
         console.log(data);
+        clearSearchText();
         slideFront_Behind('behind');
         toggleDetailPageON(data);
     },

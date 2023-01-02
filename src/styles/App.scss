@@ -106,25 +106,6 @@
                 cursor: pointer;
                 position: relative;
 
-                .dropDown{
-                    width: 100%;
-                    position: absolute;
-                    top: calc(100% + 0.5rem);
-                    left: 0;
-                    z-index: 10;
-                    @include flexbox(column, flex-start, '');
-                    .dropDownItem{
-                        padding: 0.5rem 1rem;
-                        cursor: pointer;
-                        width: 100%;
-                        &:first-child{
-                            border-radius: 0.3rem 0.3rem 0 0;
-                        }
-                        &:last-child{
-                            border-radius: 0 0 0.3rem 0.3rem;
-                        }
-                    }
-                }
             }
         }
         .flags{
@@ -334,6 +315,32 @@
                 }
             }
         }
+        .filterOptionDiv{
+            // background-color: rgba(255, 0, 0, 0.151);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            .dropDown{
+                width: 200px;
+                position: absolute;
+                top: 5.5rem;
+                right: 5rem;
+                @include flexbox(column, flex-start, '');
+                .dropDownItem{
+                    padding: 0.5rem 1rem;
+                    cursor: pointer;
+                    width: 100%;
+                    &:first-child{
+                        border-radius: 0.3rem 0.3rem 0 0;
+                    }
+                    &:last-child{
+                        border-radius: 0 0 0.3rem 0.3rem;
+                    }
+                }
+            }
+        }
     }
     .darkElements{
         background-color: hsl(209, 23%, 22%);
@@ -377,6 +384,12 @@
 .appearUp{
     animation-name: appearUp; 
     animation-duration: 1000ms;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-in-out;
+}
+.slideDown{
+    animation-name: slideDown; 
+    animation-duration: 200ms;
     animation-fill-mode: forwards;
     animation-timing-function: ease-in-out;
 }
@@ -429,6 +442,19 @@
         transform: translateY(50%);
     }
     to{
+        opacity: 1;
+        transform: translateY(0%);
+    }
+}
+@keyframes slideDown {
+    0%{
+        opacity: 0;
+        transform: translateY(-10%);
+    }
+    // 50%{
+    //     opacity: 0.1;
+    // }
+    100%{
         opacity: 1;
         transform: translateY(0%);
     }
