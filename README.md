@@ -30,5 +30,6 @@ A visiting users are be able to:
 As mentioned above, the design and challenge to create this app is given by
 
 - [Frontend-Mentor](https://www.frontendmentor.io/)
+- [my-profile-on-frontend-mentor](https://www.frontendmentor.io/profile/abhay8696)
 
 **Have fun building!** 🚀
