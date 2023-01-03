@@ -138,6 +138,9 @@
                 grid-auto-rows: 1fr;
                 gap: 4rem 5rem;
             }
+            @media only screen and (min-width: 1200px) and (max-width: 1370px){
+                column-gap: 2rem;
+            }
             @include sm-below-screen{
                 @include flexbox(column, center, '')
             }

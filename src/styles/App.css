@@ -182,6 +182,12 @@
     gap: 4rem 5rem;
   }
 }
+@media only screen and (min-width: 1200px) and (max-width: 1370px) {
+  .App .appBody .flags {
+    -moz-column-gap: 2rem;
+         column-gap: 2rem;
+  }
+}
 @media only screen and (max-width: 480px) {
   .App .appBody .flags {
     display: flex;
