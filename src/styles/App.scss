@@ -327,6 +327,21 @@
                 position: absolute;
                 top: 5.5rem;
                 right: 5rem;
+                @include md-lg-screen{
+                    right: 4rem;
+                }
+                @include sm-md-screen{
+                    right: 2rem;
+                    left: 2rem;
+                    width: auto;
+                    top: calc(10vh + 2rem + 1rem + 1rem + 0.5rem);
+                }
+                @include sm-below-screen{
+                    right: 1rem;
+                    left: 1rem;
+                    width: auto;
+                    top: calc(10vh + 2rem + 1rem + 1rem + 0.5rem);
+                }
                 @include flexbox(column, flex-start, '');
                 .dropDownItem{
                     padding: 0.5rem 1rem;
