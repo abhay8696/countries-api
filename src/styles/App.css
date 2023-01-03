@@ -166,14 +166,6 @@
     gap: 2rem 1rem;
   }
 }
-@media only screen and (min-width: 480px) and (max-width: 720px) {
-  .App .appBody .flags {
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
-    grid-auto-rows: 1fr;
-    gap: 3rem 2rem;
-  }
-}
 @media only screen and (min-width: 1200px) {
   .App .appBody .flags {
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -188,7 +180,7 @@
          column-gap: 2rem;
   }
 }
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 720px) {
   .App .appBody .flags {
     display: flex;
     flex-direction: column;
@@ -213,6 +205,13 @@
   .App .appBody .flags .flag {
     min-width: 90vw;
     max-width: 90vw;
+    margin-bottom: 1rem;
+  }
+}
+@media only screen and (min-width: 480px) and (max-width: 720px) {
+  .App .appBody .flags .flag {
+    min-width: 60vw;
+    max-width: 60vw;
     margin-bottom: 1rem;
   }
 }
